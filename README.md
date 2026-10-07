@@ -1,9 +1,11 @@
 # ITec-Backtend
 
-## Práctico 3: SQLAlchemy
+## Práctico 4: SQLModel y Alembic
+
+Aprendimos a usar SQLAlchemy, ahora lo reemplazamos con SQLModel para unificar nuestros Schemas con nuestros Models. Además, usamos Alembic para crear migraciones de DB y registrar los cambios de la estructura de la base de datos.
 
 ### Para este práctico:
 
-- Crear un módulo "models" (carpeta y archivo.py) y crear ahí las tablas de la base de datos
-- Crear un archivo dentro de src/ se llame "database.py" y guardar dentro la conexión a la db y una función get_db()
-- Finalmente adaptar los Path Operations para que persistan los datos en la db.
+- Reemplazar el SQLAlchemy funcional por SQLModel; adaptando tanto la database.py como models.py.
+- Inicializar Alembic, donde exista por lo menos una migración inicial que se encargue de levantar (crear) la DB.
+- Agregar otro modelo (tabla) que guarde algún tipo de relación (clave foránea) con la existente.

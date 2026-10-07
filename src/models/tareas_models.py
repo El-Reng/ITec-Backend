@@ -1,10 +1,27 @@
-from database import Base
-from sqlalchemy import Column, Integer, String
+from sqlmodel import Field, Relationship, SQLModel
 
-class Tarea(Base):
-    __tablename__ = "tarea"
+from .materias_models import Materia
 
-    id = Column(Integer, primary_key= True, index= True)
-    titulo = Column(String)
-    fecha = Column(String)
-    prioridad = Column(String)
+
+class TareaBase(SQLModel):
+    titulo: str = Field(index=True)
+    fecha: str
+    prioridad: str
+    materia_id: int | None = Field(default=None, foreign_key="materia.id")
+
+
+class Tarea(TareaBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    materia: Materia | None = Relationship(back_populates="tareas")
+
+
+class TareaCreate(TareaBase):
+    pass
+
+
+class TareaPublic(TareaBase):
+    id: int
+
+
+class TareaPublicNested(TareaPublic):
+    materia: Materia | None = None
